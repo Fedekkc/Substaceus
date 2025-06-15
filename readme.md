@@ -14,27 +14,52 @@ _Uncover what lies beneath the surface._
 - 🧰 Wordlist personalizable.
 - 🧵 Control de concurrencia configurable por parámetro. [TODO]
 
----
-
-## 🛠️ Instalación
-
-```shell
-git clone https://github.com/Fedekkc/Substaceus.git
-cd Substaceus
-cargo build --release
-````
 
 ---
 
 ## ⚙️ Uso
-```rust
-./subdomain-finder <dominio> [wordlist] [hilos]
-# Usar con defaults
-./subdomain-finder ejemplo.com
+
+### 📦 Compilación
+
+Primero compilá el binario optimizado:
+
+```bash
+cargo build --release
+```
+
+Esto generará el ejecutable en `target/release/subdomain-finder`.
+
+---
+
+### 💻 Ejecución
+
+#### 🪟 En Windows PowerShell:
+
+```powershell
+.\target\release\subdomain-finder <dominio> [wordlist] [hilos]
+```
+
+#### 🐧 En Linux/macOS:
+
+```bash
+./target/release/subdomain-finder <dominio> [wordlist] [hilos]
+```
+
+---
+
+### 📌 Ejemplos
+
+```bash
+# Usar wordlist por defecto (subdomains.txt) y 4 hilos
+./target/release/subdomain-finder google.com
 
 # Usar wordlist personalizada y 10 hilos
-./subdomain-finder ejemplo.com lista.txt 10
+./target/release/subdomain-finder ejemplo.com custom.txt 10
 ```
+
+---
+
+> Asegurate de tener una wordlist válida en el mismo directorio o especificar la ruta correcta.
 
 ## 📦 Requisitos
 
