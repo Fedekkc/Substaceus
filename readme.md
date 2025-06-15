@@ -1,5 +1,11 @@
 # 🧠 Substaceus
 
+![GitHub stars](https://img.shields.io/github/stars/Fedekkc/Substaceus?style=social)
+![GitHub license](https://img.shields.io/github/license/Fedekkc/Substaceus)
+![GitHub last commit](https://img.shields.io/github/last-commit/Fedekkc/Substaceus)
+![Rust](https://img.shields.io/badge/made%20with-rust-orange?logo=rust)
+
+
 _Uncover what lies beneath the surface._
 
 **Substaceus** es una herramienta escrita en Rust para descubrir subdominios de forma rápida, sencilla y elegante. Pensada para ser usada desde línea de comandos, soporta wordlists personalizadas y ejecución multihilo para acelerar búsquedas masivas.
