@@ -28,12 +28,12 @@ cargo build --release
 
 ## ⚙️ Uso
 ```rust
-./subdomine-finder <dominio> [wordlist] [hilos]
+./subdomain-finder <dominio> [wordlist] [hilos]
 # Usar con defaults
-./subdomine-finder ejemplo.com
+./subdomain-finder ejemplo.com
 
 # Usar wordlist personalizada y 10 hilos
-./subdomine-finder ejemplo.com lista.txt 10
+./subdomain-finder ejemplo.com lista.txt 10
 ```
 
 ## 📦 Requisitos
