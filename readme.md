@@ -18,7 +18,7 @@ _Uncover what lies beneath the surface._
 
 ## 🛠️ Instalación
 
-```batch
+```shell
 git clone https://github.com/Fedekkc/Substaceus.git
 cd Substaceus
 cargo build --release
@@ -27,7 +27,7 @@ cargo build --release
 ---
 
 ## ⚙️ Uso
-```batch
+```rust
 ./subdomine-finder <dominio> [wordlist] [hilos]
 # Usar con defaults
 ./subdomine-finder ejemplo.com
