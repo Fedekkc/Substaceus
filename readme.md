@@ -9,10 +9,10 @@ _Uncover what lies beneath the surface._
 ## 🚀 Características
 
 - 🔍 Descubrimiento de subdominios por diccionario.
-- ⚡ Resolución DNS paralela con múltiples hilos.
+- ⚡ Resolución DNS paralela con múltiples hilos. [TODO]
 - 🌈 Salida colorida y clara.
 - 🧰 Wordlist personalizable.
-- 🧵 Control de concurrencia configurable por parámetro.
+- 🧵 Control de concurrencia configurable por parámetro. [TODO]
 
 ---
 
@@ -22,33 +22,40 @@ _Uncover what lies beneath the surface._
 git clone https://github.com/Fedekkc/Substaceus.git
 cd Substaceus
 cargo build --release
+````
 
 ---
 
 ## ⚙️ Uso
+```batch
 ./subdomine-finder <dominio> [wordlist] [hilos]
 # Usar con defaults
 ./subdomine-finder ejemplo.com
 
 # Usar wordlist personalizada y 10 hilos
 ./subdomine-finder ejemplo.com lista.txt 10
-📦 Requisitos
-Rust
+```
 
-Wordlist de subdominios (por defecto usa subdomains.txt)
+## 📦 Requisitos
 
-💡 Ideas a futuro
-Soporte asincrónico con Tokio.
+- Rust
 
-Resolución recursiva de sub-subdominios.
+- Wordlist de subdominios (por defecto usa subdomains.txt)
 
-Exportar resultados a JSON/CSV.
+## 💡 Ideas a futuro
+- Soporte asincrónico con Tokio.
 
-Detección de wildcard DNS.
+- Resolución recursiva de sub-subdominios.
 
-Integración con servicios online (Shodan, Censys, etc.)
+- Exportar resultados a JSON/CSV.
 
-👤 Autor
-Creado con 💻 por @Fedekkc
+- Detección de wildcard DNS.
 
--- “El conocimiento oculto no siempre está lejos, a veces solo está debajo de un prefijo.”
+- Integración con servicios online (Shodan, Censys, etc.)
+
+
+
+
+<b> “El conocimiento oculto no siempre está lejos, a veces solo está debajo de un prefijo.” </b>
+
+_Creado con❤️ por @Fedekkc_
