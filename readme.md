@@ -54,8 +54,4 @@ cargo build --release
 - Integración con servicios online (Shodan, Censys, etc.)
 
 
-
-
-<b> “El conocimiento oculto no siempre está lejos, a veces solo está debajo de un prefijo.” </b>
-
 _Creado con❤️ por @Fedekkc_
