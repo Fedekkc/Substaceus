@@ -1,4 +1,4 @@
-use subdomine_finder::{finder::SubdomainFinder, utils::open_wordlist};
+use subdomain_finder::{finder::SubdomainFinder, utils::open_wordlist};
 use std::env;
 use figlet_rs::FIGfont;
 use colored::*;
@@ -19,7 +19,7 @@ fn main() {
 
     let domain = env::args()
         .nth(1)
-        .expect("Usage: subdomine-finder <domain>");
+        .expect("Usage: subdomain-finder <domain>");
     
     let wordlist_path = env::args()
         .nth(2)
