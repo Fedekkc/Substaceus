@@ -1,5 +1,11 @@
 # 🧠 Substaceus
 
+![GitHub stars](https://img.shields.io/github/stars/Fedekkc/Substaceus?style=social)
+![GitHub license](https://img.shields.io/github/license/Fedekkc/Substaceus)
+![GitHub last commit](https://img.shields.io/github/last-commit/Fedekkc/Substaceus)
+![Rust](https://img.shields.io/badge/made%20with-rust-orange?logo=rust)
+
+
 _Uncover what lies beneath the surface._
 
 **Substaceus** es una herramienta escrita en Rust para descubrir subdominios de forma rápida, sencilla y elegante. Pensada para ser usada desde línea de comandos, soporta wordlists personalizadas y ejecución multihilo para acelerar búsquedas masivas.
@@ -9,46 +15,74 @@ _Uncover what lies beneath the surface._
 ## 🚀 Características
 
 - 🔍 Descubrimiento de subdominios por diccionario.
-- ⚡ Resolución DNS paralela con múltiples hilos.
+- ⚡ Resolución DNS paralela con múltiples hilos. [TODO]
 - 🌈 Salida colorida y clara.
 - 🧰 Wordlist personalizable.
-- 🧵 Control de concurrencia configurable por parámetro.
+- 🧵 Control de concurrencia configurable por parámetro. [TODO]
 
----
-
-## 🛠️ Instalación
-
-```batch
-git clone https://github.com/Fedekkc/Substaceus.git
-cd Substaceus
-cargo build --release
 
 ---
 
 ## ⚙️ Uso
-./subdomine-finder <dominio> [wordlist] [hilos]
-# Usar con defaults
-./subdomine-finder ejemplo.com
+
+### 📦 Compilación
+
+Primero compilá el binario optimizado:
+
+```bash
+cargo build --release
+```
+
+Esto generará el ejecutable en `target/release/subdomain-finder`.
+
+---
+
+### 💻 Ejecución
+
+#### 🪟 En Windows PowerShell:
+
+```powershell
+.\target\release\subdomain-finder <dominio> [wordlist] [hilos]
+```
+
+#### 🐧 En Linux/macOS:
+
+```bash
+./target/release/subdomain-finder <dominio> [wordlist] [hilos]
+```
+
+---
+
+### 📌 Ejemplos
+
+```bash
+# Usar wordlist por defecto (subdomains.txt) y 4 hilos
+./target/release/subdomain-finder google.com
 
 # Usar wordlist personalizada y 10 hilos
-./subdomine-finder ejemplo.com lista.txt 10
-📦 Requisitos
-Rust
+./target/release/subdomain-finder ejemplo.com custom.txt 10
+```
 
-Wordlist de subdominios (por defecto usa subdomains.txt)
+---
 
-💡 Ideas a futuro
-Soporte asincrónico con Tokio.
+> Asegurate de tener una wordlist válida en el mismo directorio o especificar la ruta correcta.
 
-Resolución recursiva de sub-subdominios.
+## 📦 Requisitos
 
-Exportar resultados a JSON/CSV.
+- Rust
 
-Detección de wildcard DNS.
+- Wordlist de subdominios (por defecto usa subdomains.txt)
 
-Integración con servicios online (Shodan, Censys, etc.)
+## 💡 Ideas a futuro
+- Soporte asincrónico con Tokio.
 
-👤 Autor
-Creado con 💻 por @Fedekkc
+- Resolución recursiva de sub-subdominios.
 
--- “El conocimiento oculto no siempre está lejos, a veces solo está debajo de un prefijo.”
+- Exportar resultados a JSON/CSV.
+
+- Detección de wildcard DNS.
+
+- Integración con servicios online (Shodan, Censys, etc.)
+
+
+_Creado con❤️ por @Fedekkc_
