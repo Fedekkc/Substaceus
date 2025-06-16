@@ -26,13 +26,15 @@ async fn main() {
         .nth(2)
         .unwrap_or_else(|| "subdomains.txt".to_string());
 
+    let export_type = env::args()
+        .nth(3)
+        .unwrap_or_else(|| "none".to_string());
+
 
 
     let domain = domain.trim_end_matches('.');
     let wordlist = open_wordlist(&wordlist_path).expect("Failed to open wordlist file");
 
-    let found = finder.find(wordlist, domain).await;
-    for sub in found {
-        println!("{}", sub.green()); 
-    }
+    finder.find(wordlist, domain, &export_type ).await;
+
 }

@@ -15,7 +15,7 @@ impl SubdomainFinder {
         SubdomainFinder { resolver }
     }
 
-    pub async fn find(&self, reader: BufReader<File>, domain: &str) -> Vec<String> {
+    pub async fn find(&self, reader: BufReader<File>, domain: &str, export_type: &str) -> Vec<String> {
         let lines: Vec<_> = reader.lines().filter_map(Result::ok).collect();
 
         let results = stream::iter(lines)
@@ -36,7 +36,23 @@ impl SubdomainFinder {
             .filter_map(async move |res| res) // aca filtro los resultados que son None
             .collect::<Vec<_>>()
             .await;
-
+            
+        if export_type == "json" {
+            let json_results = serde_json::to_string(&results).expect("Failed to serialize results to JSON");
+            std::fs::write("results.json", json_results).expect("Failed to write results to file");
+            println!("Results exported to results.json");
+        } else if export_type == "txt" {
+            let txt_results = results.join("\n");
+            std::fs::write("results.txt", txt_results).expect("Failed to write results to file");
+            println!("Results exported to results.txt");
+        } else if export_type == "none"
+        {
+            println!("Results not exported.");
+        }
+        else {
+            println!("Unknown export type. Results not exported.");
+        }
         results
+        
     }
 }
