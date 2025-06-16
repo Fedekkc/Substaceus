@@ -1,30 +1,41 @@
-use std::io::BufRead;
-use trust_dns_resolver::{Resolver, config::*};
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+use trust_dns_resolver::TokioAsyncResolver;
+use trust_dns_resolver::config::*;
 use colored::*;
+use futures::stream::{self, StreamExt};
 
 pub struct SubdomainFinder {
-    resolver: Resolver,
+    resolver: TokioAsyncResolver,
 }
 
 impl SubdomainFinder {
-    pub fn new() -> Self {
-        let resolver = Resolver::new(ResolverConfig::default(), ResolverOpts::default())
-            .expect("Could not create DNS resolver");
+    pub async fn new() -> Self {
+        let resolver = TokioAsyncResolver::tokio(ResolverConfig::default(), ResolverOpts::default());
         SubdomainFinder { resolver }
     }
 
-    pub fn find<B: BufRead>(&self, reader: B, domain: &str) -> Vec<String> {
-        let mut results = Vec::new();
+    pub async fn find(&self, reader: BufReader<File>, domain: &str) -> Vec<String> {
+        let lines: Vec<_> = reader.lines().filter_map(Result::ok).collect();
 
-        for line in reader.lines() {
-            if let Ok(sub) = line {
-                let fqdn = format!("{}.{}", sub, domain);
-                if self.resolver.lookup_ip(&fqdn).is_ok() {
-                    print!("{}.{} \n", sub.bold().green(), domain.bold().blue());
-                    results.push(fqdn);
+        let results = stream::iter(lines)
+            .map(|sub| {
+                let domain = domain.to_string();
+                let resolver = self.resolver.clone(); // esto se hace para que cada tarea tenga su propio resolver
+                async move { //esto es un tipo de lambda asíncrona
+                    let fqdn = format!("{}.{}", sub, domain);
+                    if resolver.lookup_ip(&fqdn).await.is_ok() {
+                        println!("{}.{}", sub.bold().green(), domain.bold().blue());
+                        Some(fqdn)
+                    } else {
+                        None
+                    }
                 }
-            }
-        }
+            })
+            .buffer_unordered(100) // este numero se puede modificar pero no tiene q estar muy alto para no saturar el DNS
+            .filter_map(async move |res| res) // aca filtro los resultados que son None
+            .collect::<Vec<_>>()
+            .await;
 
         results
     }

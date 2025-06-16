@@ -12,10 +12,11 @@ fn watermark() {
 
     
 
-fn main() {
+#[tokio::main]
+async fn main() {
     watermark();
     
-    let finder = SubdomainFinder::new();
+    let finder = SubdomainFinder::new().await;
 
     let domain = env::args()
         .nth(1)
@@ -30,8 +31,8 @@ fn main() {
     let domain = domain.trim_end_matches('.');
     let wordlist = open_wordlist(&wordlist_path).expect("Failed to open wordlist file");
 
-    let found = finder.find(wordlist, domain);
+    let found = finder.find(wordlist, domain).await;
     for sub in found {
-        println!("{}", sub.green()); // Colorea los resultados
+        println!("{}", sub.green()); 
     }
 }
