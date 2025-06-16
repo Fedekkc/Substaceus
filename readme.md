@@ -15,10 +15,11 @@ _Uncover what lies beneath the surface._
 ## 🚀 Características
 
 - 🔍 Descubrimiento de subdominios por diccionario.
-- ⚡ Resolución DNS paralela con múltiples hilos. [TODO]
+- ⚡ Resolución DNS paralela con múltiples hilos. 
 - 🌈 Salida colorida y clara.
 - 🧰 Wordlist personalizable.
-- 🧵 Control de concurrencia configurable por parámetro. [TODO]
+- 📄 Export en JSON/TXT
+- 🧵 Control de concurrencia.
 
 
 ---
@@ -42,13 +43,13 @@ Esto generará el ejecutable en `target/release/subdomain-finder`.
 #### 🪟 En Windows PowerShell:
 
 ```powershell
-.\target\release\subdomain-finder <dominio> [wordlist] [hilos]
+.\target\release\subdomain-finder <dominio> [wordlist] [JSON/TXT]
 ```
 
 #### 🐧 En Linux/macOS:
 
 ```bash
-./target/release/subdomain-finder <dominio> [wordlist] [hilos]
+./target/release/subdomain-finder <dominio> [wordlist] [JSON/TXT]
 ```
 
 ---
@@ -56,11 +57,11 @@ Esto generará el ejecutable en `target/release/subdomain-finder`.
 ### 📌 Ejemplos
 
 ```bash
-# Usar wordlist por defecto (subdomains.txt) y 4 hilos
+# Usar wordlist por defecto (subdomains.txt) y no exportar
 ./target/release/subdomain-finder google.com
 
-# Usar wordlist personalizada y 10 hilos
-./target/release/subdomain-finder ejemplo.com custom.txt 10
+# Usar wordlist personalizada y exportar
+./target/release/subdomain-finder google.com custom_wordlist.txt  
 ```
 
 ---
@@ -74,11 +75,8 @@ Esto generará el ejecutable en `target/release/subdomain-finder`.
 - Wordlist de subdominios (por defecto usa subdomains.txt)
 
 ## 💡 Ideas a futuro
-- Soporte asincrónico con Tokio.
 
 - Resolución recursiva de sub-subdominios.
-
-- Exportar resultados a JSON/CSV.
 
 - Detección de wildcard DNS.
 
